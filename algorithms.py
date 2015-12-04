@@ -11,8 +11,6 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 import multiprocessing as mp
 import matplotlib.animation as animation
-from PIL import Image, ImageSequence
-# from images2gif import writeGif
 import shutil
 import os
 import glob
