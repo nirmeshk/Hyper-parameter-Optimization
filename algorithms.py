@@ -17,8 +17,6 @@ import shutil
 import os
 import glob
 
-r.seed(15)
-
 class de():
     def __init__(self):
         self.settings = O(
@@ -31,7 +29,8 @@ class de():
         
     def optimize(self, model):
         print(self.__class__.__name__)
-        population = [model.generate() for _ in range(self.settings.np)]
+        r.seed(15)
+        population = [model.generate(r) for _ in range(self.settings.np)]
             
         frontier = []
         
@@ -110,7 +109,8 @@ class ga():
 
 
         # Generate thrice the candidate size for the first time
-        population = [model.generate(ga.seed) for _ in range(self.settings.candidates*3)]
+        r.seed(15)
+        population = [model.generate(r) for _ in range(self.settings.candidates*3)]
         
 
         directory = model.__class__.__name__ + '/'
