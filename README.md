@@ -6,7 +6,8 @@ This project deals with the classic problem of Hyper Parameter optimization. The
 - [Tuning the GA using DE](tuned_ga.md)
 
 ### Example optimization of DTLZ_1 model using GA:
+<!-- ![DTLZ_1 Optimization using GA](http://i.imgur.com/BISkpyY.gifv) -->
 <!-- ![DTLZ_3](http://i.imgur.com/KjtuaQd.gif) -->
 <!-- ![DTLZ_5](http://i.imgur.com/XZlNEIw.gif)-->
-<!-- ![DTLZ_7](http://i.imgur.com/vvkMu93.gif) -->
-<!-- ![DTLZ_1 Optimization using GA](http://i.imgur.com/BISkpyY.gifv) -->
+<!-- ![DTLZ_7](http://i.imgur.com/MbjngQ6.gif)  -->
+
