@@ -3,6 +3,7 @@ import random as r
 from util import *
 import math
 from math import cos, sin, pi
+from algorithms import *
 
 class Decision():
     """ A wrapper class on decisions """
@@ -115,8 +116,7 @@ class GA_MODEL(Model):
     def __init__(self, model_instance):
         """
             Args:
-                n = number of decisions
-                m = number of objectives
+                model_instance: A model which this model will optimize.
         """
         
         self.n = 5
@@ -129,19 +129,31 @@ class GA_MODEL(Model):
         self.decs.append(Decision(name="crossover_prob", low=0.65, high=0.99))
         
         def f1(can):
-            return 0
-        
+            settings = O(
+                gens = can.decs[0],
+                candidates = 10,
+                better = lt,
+                era = can.decs[1],
+                retain = can.decs[2],
+                mutate_prob = can.decs[3]
+                )
+            ga_ = ga(settings)
+            baseline_population, population = ga_.optimize(model_instance)
+            energy = [model_instance.energy(can) for can in population]
+            
+            return min(energy)
+
         self.objs = [Objective(name = "f1", function = f1)]
 
-    def generate(i):
+    def generate(i, r_ = r):
         """ Generates a candidate """
         while True:
             decs = []
             for d in i.decs:
                 if type(d.low) == int:
-                    decs += [r.randint(d.low, d.high)]
+                    decs += [r_.randint(d.low, d.high)]
                 else:
-                    decs += [r.uniform(d.low, d.high)]
+                    decs += [r_.uniform(d.low, d.high)]
             one = Candidate(decs = decs)
             if i.ok(one):
                 return one

@@ -34,7 +34,7 @@ class de():
             
         baseline_population = deepcopy(population[:])
 
-        for can in baseline_population: print(can.decs)
+#         for can in baseline_population: print(can.decs)
 
         frontier = []
         
@@ -87,17 +87,16 @@ class de():
         
 class ga():
     seed = 15678
-    def __init__(self):
-        self.settings = O(
-        gens = 15,
-        candidates = 50,
-        better = lt,
-        era = 100,
-        retain = 0.33, #retain 33% of parents to next generation
-        mutate_prob = 0.25
-        )
-
-
+    def __init__(self, setting = O(
+            gens = 15,
+            candidates = 50,
+            better = lt,
+            era = 100,
+            retain = 0.33, #retain 33% of parents to next generation
+            mutate_prob = 0.25
+            )):
+        self.settings = setting
+        
     def optimize(self, model):
 
         ######   -- Log initial settings--  ######
@@ -158,9 +157,9 @@ class ga():
             
             if i == 0:
                 baseline_population = deepcopy(population[:])
-                print('printing baseline')
-                for can in baseline_population: print(can.decs)
-                print('printed baseline')
+#                 print('printing baseline')
+#                 for can in baseline_population: print(can.decs)
+#                 print('printed baseline')
 
             ga.graph_it(population, model, scale)
             print('.')
