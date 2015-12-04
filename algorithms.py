@@ -32,6 +32,10 @@ class de():
         r.seed(15)
         population = [model.generate(r) for _ in range(self.settings.np)]
             
+        baseline_population = deepcopy(population[:])
+
+        for can in baseline_population: print(can.decs)
+
         frontier = []
         
         for can_1 in population:
@@ -47,8 +51,8 @@ class de():
         for _ in range(self.settings.max):
             self.update(frontier, model)
         
-        for can in frontier: print(can.decs)
-        return frontier
+#         for can in frontier: print(can.decs)
+        return baseline_population, frontier
 
     def update(self, frontier, model):
         for i, can in enumerate(frontier):
@@ -85,8 +89,8 @@ class ga():
     seed = 15678
     def __init__(self):
         self.settings = O(
-        gens = 400,
-        candidates = 500,
+        gens = 15,
+        candidates = 50,
         better = lt,
         era = 100,
         retain = 0.33, #retain 33% of parents to next generation
@@ -154,7 +158,10 @@ class ga():
             
             if i == 0:
                 baseline_population = deepcopy(population[:])
-            
+                print('printing baseline')
+                for can in baseline_population: print(can.decs)
+                print('printed baseline')
+
             ga.graph_it(population, model, scale)
             print('.')
             return baseline_population, population
