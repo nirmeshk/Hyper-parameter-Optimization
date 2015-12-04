@@ -7,4 +7,4 @@ This project deals with the classic problem of Hyper Parameter optimization. The
 
 ### Example optimization of DTLZ_1 model using GA:
 
-- ![DTLZ_1 Optimization using GA](http://i.imgur.com/BISkpyY.gifv)
+<!-- - ![DTLZ_1 Optimization using GA](http://i.imgur.com/BISkpyY.gifv) -->
