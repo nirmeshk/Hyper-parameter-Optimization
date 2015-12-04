@@ -12,7 +12,7 @@ from mpl_toolkits.mplot3d import Axes3D
 import multiprocessing as mp
 import matplotlib.animation as animation
 from PIL import Image, ImageSequence
-from images2gif import writeGif
+# from images2gif import writeGif
 import shutil
 import os
 import glob
@@ -48,7 +48,7 @@ class de():
         for _ in range(self.settings.max):
             self.update(frontier, model)
         
-#         for can in frontier: print(can.decs)
+        for can in frontier: print(can.decs)
         return frontier
 
     def update(self, frontier, model):
@@ -61,6 +61,26 @@ class de():
     @staticmethod
     def threeOthers(frontier):
         two, three, four = r.sample(frontier, 3)
+        return two, three, four
+    
+    def extrapolate(self, frontier, model, one):
+        new = one.clone()
+    
+        for _ in range(5):
+            two, three, four = de.threeOthers(frontier)
+            c = r.randint(0, len(new.decs) - 1)
+                    
+            for j in range(len(new.decs)):
+                if r.random() < self.settings.cf or j == c:
+                    new.decs[j] = two.decs[j] + self.settings.f * (three.decs[j] - four.decs[j])
+            
+            if model.ok(new):
+                break
+            
+        if model.ok(new):
+            return new
+        
+        return one
         
 class ga():
     seed = 15678

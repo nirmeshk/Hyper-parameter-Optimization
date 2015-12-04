@@ -130,9 +130,9 @@ class GA_MODEL(Model):
         self.decs.append(Decision(name="crossover_prob", low=0.65, high=0.99))
         
         def f1(can):
-            pass
+            return 0
         
-        self.objs = [f1]
+        self.objs = [Objective(name = "f1", function = f1)]
 
     def generate(i):
         """ Generates a candidate """
