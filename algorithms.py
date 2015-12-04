@@ -20,6 +20,7 @@ import glob
 r.seed(15)
 
 class ga():
+    seed = 15678
     def __init__(self):
         self.settings = O(
         gens = 400,
@@ -46,7 +47,7 @@ class ga():
 
 
         # Generate thrice the candidate size for the first time
-        population = [model.generate() for _ in range(self.settings.candidates*3)]
+        population = [model.generate(ga.seed) for _ in range(self.settings.candidates*3)]
         
 
         directory = model.__class__.__name__ + '/'

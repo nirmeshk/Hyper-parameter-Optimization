@@ -55,8 +55,9 @@ class Model(object):
     def __repr__(i):
         return str(zip(*i.decs)[0])
 
-    def generate(i):
+    def generate(i, seed = 15):
         """ Generates a candidate """
+        r.seed(seed)
         count = 0
         while True:
             decs = [r.uniform(d.low, d.high) for d in i.decs]
