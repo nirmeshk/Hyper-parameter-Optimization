@@ -112,8 +112,42 @@ class Model(object):
             return False
         return at_least
 
+class GA_MODEL(Model):
+    def __init__(self, model_instance):
+        """
+            Args:
+                n = number of decisions
+                m = number of objectives
+        """
+        
+        self.n = 5
+        self.m = model_instance.m      
+        
+        self.decs = [Decision(name="gens", low=200, high=600)]
+        self.decs.append(Decision(name="era", low=50, high=200))
+        self.decs.append(Decision(name="retain", low=0.1, high=0.5))
+        self.decs.append(Decision(name="mutate_prob", low=0.25, high=0.75))
+        self.decs.append(Decision(name="crossover_prob", low=0.65, high=0.99))
+        
+        def f1(can):
+            pass
+        
+        self.objs = [f1]
 
+    def generate(i):
+        """ Generates a candidate """
+        while True:
+            decs = []
+            for d in i.decs:
+                if type(d.low) == int:
+                    decs += [r.randint(d.low, d.high)]
+                else:
+                    decs += [r.uniform(d.low, d.high)]
+            one = Candidate(decs = decs)
+            if i.ok(one):
+                return one
 
+    
 class DTLZ_1(Model):
     def __init__(self, n=10, m=2):
         """

@@ -19,6 +19,49 @@ import glob
 
 r.seed(15)
 
+class de():
+    def __init__(self):
+        self.settings = O(
+            f = 0.75,
+            max = 20,
+            np = 50,
+            cf = 0.3,
+            epsilon = 0.01,
+            me = 'de',)
+        
+    def optimize(self, model):
+        print(self.__class__.__name__)
+        population = [model.generate() for _ in range(self.settings.np)]
+            
+        frontier = []
+        
+        for can_1 in population:
+            count = 1  # Number of candidates that can_1 dominates
+            for can_2 in population:
+                if model.cdom(can_1, can_2):
+                    count += 1
+            frontier.append((can_1, count))
+        
+        frontier = sorted(frontier, key = lambda (can, score): score)
+        frontier = [ can for can, score in frontier]
+
+        for _ in range(self.settings.max):
+            self.update(frontier, model)
+        
+#         for can in frontier: print(can.decs)
+        return frontier
+
+    def update(self, frontier, model):
+        for i, can in enumerate(frontier):
+            new = self.extrapolate(frontier, model, can)
+            if model.cdom(new, can):
+                frontier[i] = new
+
+        
+    @staticmethod
+    def threeOthers(frontier):
+        two, three, four = r.sample(frontier, 3)
+        
 class ga():
     seed = 15678
     def __init__(self):
@@ -88,9 +131,13 @@ class ga():
                     next_generation.append(new_can)
             print(len(population))
             population = next_generation[:] 
+            
+            if i == 0:
+                baseline_population = deepcopy(population[:])
+            
             ga.graph_it(population, model, scale)
             print('.')
-           
+            return baseline_population, population
   
     @staticmethod
     def dominations(population, model):
