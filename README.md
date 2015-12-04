@@ -1,2 +1,7 @@
-## Hello
+## This project deals with the classic problem of Hyper Parameter optimization. The Genetic Algorithm has many magic numbers that we will try to optimize using Differential Evolution.
+
+### Content:
+- [The GA performances with parameter Tuning](stand_alone_ga.md)
+
+
 - ![DTLZ_1 Optimization using GA](http://i.imgur.com/BISkpyY.gifv)
