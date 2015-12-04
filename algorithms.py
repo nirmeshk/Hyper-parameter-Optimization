@@ -125,8 +125,7 @@ class ga():
         f1_max = max([x[0] for x in obj_score])
         f2_max = max([x[1] for x in obj_score])
         f3_max = max([x[2] for x in obj_score])
-        scale = (f1_max, f2_max, f3_max)
-
+        scale = (f1_max*1.1, f2_max*1.1, f3_max*1.1)
         ga.graph_it(population, model, scale)
         n = self.settings.candidates
 
@@ -163,7 +162,7 @@ class ga():
 
             ga.graph_it(population, model, scale)
             print('.')
-            return baseline_population, population
+        #return baseline_population, population
   
     @staticmethod
     def dominations(population, model):
@@ -227,8 +226,8 @@ class ga():
             fig = plt.figure()
             ax = fig.add_subplot(111)
             ax.scatter(f1, f2, color = '#ff5c33', alpha=0.7)
-            ax.xlim([-100, 1000])
-            ax.ylim([-100, 1000])
+            ax.xlim([0, 1000])
+            ax.ylim([0, 1000])
             ax.set_xlabel('f1')
             ax.set_ylabel('f2')
             fig.savefig(file_name)
@@ -240,9 +239,9 @@ class ga():
             fig = plt.figure()
             ax = fig.add_subplot(111, projection='3d')
             ax.scatter(f1, f2, f3, s = 40, color = '#000080', alpha=0.80)
-            ax.set_xlim((-100, scale[0]))
-            ax.set_ylim((-100, scale[1]))
-            ax.set_zlim((-100, scale[2]))
+            ax.set_xlim((0, scale[0]))
+            ax.set_ylim((0, scale[1]))
+            ax.set_zlim((0, scale[2]))
             ax.set_xlabel('f1')
             ax.set_ylabel('f2')
             ax.set_zlabel('f3')
