@@ -87,19 +87,18 @@ class de():
         return one
         
 class ga():
-    seed = 15678
     def __init__(self, setting = O(
             gens = 200,
-            candidates = 10,
+            candidates = 100,
             better = lt,
             era = 10,
             retain = 0.33, #retain 33% of parents to next generation
             mutate_prob = 0.25,
             lives = 3,
-            # Initially set patience to lives. lives can be configured. Early terminate if no better frontier for 3 eras.
-            patience = 3,
-            )):
+            patience = 3
+            ), visualize = False):
         self.settings = setting
+        self.visualize = visualize
         
     def optimize(self, model, population = None):
 
@@ -107,6 +106,7 @@ class ga():
         print(model)
         print("Settings: ")
         print(self.settings)
+        
         #-----------------------------------------#
         
         #========================================#
@@ -115,39 +115,55 @@ class ga():
 
 
         # Generate thrice the candidate size for the first time
-        
+        n = self.settings.candidates
         if population is None:
             n = self.settings.candidates
             population = [model.generate(r) for _ in range(n*3)]
             population = self.dominations(population, model)
-            frontier = population[:int(n*0.27)]
-            frontier += population[-int(n*0.06):] # For some variation
-            population = frontier
+            frontier = population[:int(n*0.37)]
+            frontier += population[-int(n*0.20):] # For some variation
+            print(len(frontier))
+            r.shuffle(frontier)
+            population = frontier[:n]
         
-#         directory = model.__class__.__name__ + '/'
-#         if os.path.exists(directory): shutil.rmtree(directory); os.makedirs(directory)  
-#         else: os.makedirs(directory)  
+        baseline_population = deepcopy(population[:])
+        cur_era = prev_era = deepcopy(population[:])
+         
+        #=================================#
+        ###  Visualization Code        ####
+        #=================================#
+        if self.visualize:
+            # Create a directory and remove the old one.
+            directory = model.__class__.__name__ + '/'
+            if os.path.exists(directory): shutil.rmtree(directory); os.makedirs(directory)  
+            else: os.makedirs(directory)
 
-        # Find out the scale for graphs
-        obj_score = [model.eval(can) for can in population]
-        f1_max = max([x[0] for x in obj_score])
-        f2_max = max([x[1] for x in obj_score])
-        f3_max = max([x[2] for x in obj_score])
-        scale = (f1_max*1.1, f2_max*1.1, f3_max*1.1)
-        ga.graph_it(population, model, scale)
-        n = self.settings.candidates
+            # Find out the scale for graphs
+            obj_score = [model.eval(can) for can in population]
+            f1_max = max([x[0] for x in obj_score])
+            f2_max = max([x[1] for x in obj_score])
+            f3_max = max([x[2] for x in obj_score])
+            scale = (f1_max*1.1, f2_max*1.1, f3_max*1.1)
+            ga.graph_it(population, model, scale)
 
         #=================================================#
         ######  Now the Evolution Begins    ###############
         #=================================================#
 
+        
+
         for i in range(self.settings.gens):   
+            print('-', end='')
             # For the entire population, calculate its fitness score.
             # Fitness score is number of other can that a point dominates
             # After fitness calculation, retain x% of population as parents into next gen
             population = self.dominations(population, model)
-            frontier = population[:int(n*0.30)]
-            frontier += population[-int(n*0.10):] # For some variation
+
+            # Retain self.settings.retain % elite parents
+            frontier = population[:int(n*self.settings.retain)]
+
+            # For some variation, retain some bad candidates
+            frontier += population[-int(n*self.settings.retain*0.5):] 
 
             # Add all the elite parents to next generation
             next_generation = frontier[:]
@@ -158,12 +174,10 @@ class ga():
                 new_can = ga.mutate(new_can, model, self.settings.mutate_prob)
                 if model.cdom(new_can, papa) or model.cdom(new_can, mama):
                     next_generation.append(new_can)
-            population = next_generation[:] 
             
-            if i == 0:
-                baseline_population = deepcopy(population[:])
-                cur_era = prev_era = population
+            population = next_generation[:] 
 
+            # Check for early termination
             if i != 0 and i % self.settings.era == 0:
                 prev_era = cur_era
                 cur_era = population
@@ -175,19 +189,19 @@ class ga():
                 else:
                     self.settings.patience = self.settings.lives
 
-#             ga.graph_it(population, model, scale)
+            if self.visualize: ga.graph_it(population, model, scale)
 
         return baseline_population, population
   
     @staticmethod
     def dominations(population, model):
         """ 
+        Args:
             population: ith population
             model: the instance of model we are using
-            retain: '%' of population to retain in next generation
-
-            returns Sorted population according to its dominations
+            returns Sorted population according to its domination scores
         """
+
         pop_dominations = []
         
         #Apply all pair continuous dominations
@@ -199,7 +213,6 @@ class ga():
             pop_dominations.append((can_1, dominated_by))
         
         pop_dominations.sort(key = lambda (can, dominated_by): dominated_by)
-#         print([score for can, score in pop_dominations])  
         frontier = [can for (can, score) in pop_dominations]
         return frontier
 
@@ -261,5 +274,3 @@ class ga():
             ax.set_ylabel('f2')
             ax.set_zlabel('f3')
             fig.savefig(file_name)
-
-

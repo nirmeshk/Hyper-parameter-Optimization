@@ -1,4 +1,5 @@
 import sys
+from scipy.spatial import distance
 
 def lt(i, j): return i < j
 
@@ -46,7 +47,7 @@ def norm(x, low, high):
   return nor
   
 """
-Returns true if both are similar. i.e. terminate, no improvement
+Returns true if both are similar. i.e. terminate, no improvement in mean objective scores
 """
 def earlyTermination(prev_era, cur_era, model):
     prev_obj_score = [model.eval(can) for can in prev_era]
@@ -57,42 +58,27 @@ def earlyTermination(prev_era, cur_era, model):
     for i in range(model.m):
         prev_sum_obj_i = sum(o[i] for o in prev_obj_score)
         cur_sum_obj_i = sum(o[i] for o in cur_obj_score)
-        loss = (prev_sum_obj_i - cur_sum_obj_i) if model.objs[i].better == lt else (cur_sum_obj_i - prev_sum_obj_i)
-        
-        if loss > eps * prev_sum_obj_i:
-            return False
-    
+        if model.objs[i].better(cur_sum_obj_i, prev_sum_obj_i): return False
     return True
 
-# """
-# Checks convergence of a population with baseline population
-# """
-# def converge(baseline_population, population, model):
-#     dist_from_hell = 0
-#     for can1,can2 in zip(population, baseline_population):
-#         dist_from_hell += sum([(x1 - x2) for x1, x2 in zip(model.eval(can1), model.eval(can2))])
-#     
-#     print('Distance from hell = ' , dist_from_hell)
-#     print('Baseline = ', [model.eval(can) for can in baseline_population])
-#     print('Frontline = ', [model.eval(can) for can in population])
-#     return dist_from_hell
- 
 """
 Checks convergence of a population with baseline population
+Args:
+  base_pop = baseline population
+  final_pop = final population
+  model = model under optimization
+returns:
+  Average distance of nearest points in base_pop to final_pop. 
 """
-def converge(baseline_population, population, model):
+def convergence(base_pop, final_pop, model):
+    assert len(base_pop) == len(final_pop)
     dist_from_hell = 0
-    for can1 in population:
+    for can1 in final_pop:
         d = sys.maxint
-        for can2 in baseline_population:
-            d1 = sum([(x1 - x2)**2 for x1, x2 in zip(model.eval(can1), model.eval(can2))])
+        for can2 in base_pop:
+            d1 = distance.euclidean(model.eval(can1), model.eval(can2))
             if d1 <= d:
-                d = d1
-                nearest_neighbour = can2
-                         
-        dist_from_hell += sum([(x1 - x2) for x1, x2 in zip(model.eval(can1), model.eval(nearest_neighbour))])
-     
-    print('Distance from hell = ' , dist_from_hell)
-    print('Baseline = ', [model.eval(can) for can in baseline_population])
-    print('Frontline = ', [model.eval(can) for can in population])
-    return dist_from_hell
+                d = d1; 
+                nearest_neighbour = can2                            
+        dist_from_hell += distance.euclidean(model.eval(can1), model.eval(nearest_neighbour))
+    return dist_from_hell/len(base_pop)
