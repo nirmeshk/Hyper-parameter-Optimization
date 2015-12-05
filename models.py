@@ -138,7 +138,9 @@ class GA_MODEL(Model):
                 better = lt,
                 era = can.decs[1],
                 retain = can.decs[2],
-                mutate_prob = can.decs[3]
+                mutate_prob = can.decs[3],
+                lives = 3,
+                patience = 3,
                 )
             ga_ = ga(settings)
             
@@ -152,9 +154,9 @@ class GA_MODEL(Model):
                 GA_MODEL.population_model_instance = model_instance
 
             baseline_population, population = ga_.optimize(model_instance, GA_MODEL.population)
-            energy = [model_instance.energy(can) for can in population]
+            dist_from_hell = converge(baseline_population, population, model_instance) 
             
-            return min(energy)
+            return dist_from_hell
 
         self.objs = [Objective(name = "f1", function = f1)]
 
@@ -163,13 +165,37 @@ class GA_MODEL(Model):
         while True:
             decs = []
             for d in i.decs:
-                if type(d.low) == int:
+                if type(d.low) is int:
                     decs += [r_.randint(d.low, d.high)]
                 else:
                     decs += [r_.uniform(d.low, d.high)]
             one = Candidate(decs = decs)
             if i.ok(one):
                 return one
+
+    @staticmethod
+    def dominations(population, model):
+        """ 
+            population: ith population
+            model: the instance of model we are using
+            retain: '%' of population to retain in next generation
+
+            returns Sorted population according to its dominations
+        """
+        pop_dominations = []
+        
+        #Apply all pair continuous dominations
+        for can_1 in population:
+            dominated_by = 0  # Number of candidates that dominates can_1 
+            for can_2 in population:
+                if model.cdom(can_2, can_1):
+                    dominated_by += 1
+            pop_dominations.append((can_1, dominated_by))
+        
+        pop_dominations.sort(key = lambda (can, dominated_by): dominated_by)
+        print([score for can, score in pop_dominations])  
+        frontier = [can for (can, score) in pop_dominations]
+        return frontier
 
     
 class DTLZ_1(Model):

@@ -19,8 +19,8 @@ class de():
     def __init__(self):
         self.settings = O(
             f = 0.75,
-            max = 20,
-            np = 50,
+            max = 10,
+            np = 5,
             cf = 0.3,
             epsilon = 0.01,
             me = 'de',)
@@ -74,6 +74,9 @@ class de():
             for j in range(len(new.decs)):
                 if r.random() < self.settings.cf or j == c:
                     new.decs[j] = two.decs[j] + self.settings.f * (three.decs[j] - four.decs[j])
+                    if type(new.decs[j].low) is int:
+                        new.decs[j] = math.floor(new.decs[j])
+
             
             if model.ok(new):
                 break
@@ -86,10 +89,10 @@ class de():
 class ga():
     seed = 15678
     def __init__(self, setting = O(
-            gens = 20,
-            candidates = 50,
+            gens = 200,
+            candidates = 10,
             better = lt,
-            era = 100,
+            era = 10,
             retain = 0.33, #retain 33% of parents to next generation
             mutate_prob = 0.25,
             lives = 3,
@@ -121,13 +124,9 @@ class ga():
             frontier += population[-int(n*0.06):] # For some variation
             population = frontier
         
-
-        print('GA initial * 3 pop = ', [model.eval(can) for can in population])
-
-
-        directory = model.__class__.__name__ + '/'
-        if os.path.exists(directory): shutil.rmtree(directory); os.makedirs(directory)  
-        else: os.makedirs(directory)  
+#         directory = model.__class__.__name__ + '/'
+#         if os.path.exists(directory): shutil.rmtree(directory); os.makedirs(directory)  
+#         else: os.makedirs(directory)  
 
         # Find out the scale for graphs
         obj_score = [model.eval(can) for can in population]
@@ -143,7 +142,6 @@ class ga():
         #=================================================#
 
         for i in range(self.settings.gens):   
-            print(i)
             # For the entire population, calculate its fitness score.
             # Fitness score is number of other can that a point dominates
             # After fitness calculation, retain x% of population as parents into next gen
@@ -160,7 +158,6 @@ class ga():
                 new_can = ga.mutate(new_can, model, self.settings.mutate_prob)
                 if model.cdom(new_can, papa) or model.cdom(new_can, mama):
                     next_generation.append(new_can)
-            print(len(population))
             population = next_generation[:] 
             
             if i == 0:
@@ -178,8 +175,7 @@ class ga():
                 else:
                     self.settings.patience = self.settings.lives
 
-            ga.graph_it(population, model, scale)
-            print('.')
+#             ga.graph_it(population, model, scale)
 
         return baseline_population, population
   
@@ -203,7 +199,7 @@ class ga():
             pop_dominations.append((can_1, dominated_by))
         
         pop_dominations.sort(key = lambda (can, dominated_by): dominated_by)
-        print([score for can, score in pop_dominations])  
+#         print([score for can, score in pop_dominations])  
         frontier = [can for (can, score) in pop_dominations]
         return frontier
 

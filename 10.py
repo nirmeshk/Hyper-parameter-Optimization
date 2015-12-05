@@ -8,8 +8,12 @@ Returns an array of losses
 """
 def cal_loss(baseline_population, population, model):
 #     base_energy = [model.energy(can) for can in baseline_population]
-    pop_energy = [model.energy(can) for can in population]
-    return pop_energy
+#     pop_energy = [model.energy(can) for can in population]
+    print ('baseline :', [baseline_population])
+    print ('frontier: ', [population])
+    print ('model: ', type(model))
+    
+#     return pop_energy
 
 if __name__ == '__main__':   
     for model in [GA_MODEL]:#, DTLZ_3, DTLZ_7, DTLZ_5]:
@@ -17,7 +21,7 @@ if __name__ == '__main__':
         model = model(dtlz1)
         for optimizer in [de]:
             baseline_population, population = optimizer().optimize(model)
-            en = cal_loss(baseline_population, population, model)
-            print(en)
+#             en = cal_loss(baseline_population, population, model)
+#             print(en)
 
         print ("\n\n")
