@@ -1,7 +1,7 @@
 from __future__ import print_function, division
 from models import *
 from algorithms import *
-
+from util import *
 
 """
 Calculates loss between baseline era and final era. 
@@ -10,6 +10,9 @@ Returns an array of losses
 def cal_loss(baseline_population, population, model):
 #     base_energy = [model.energy(can) for can in baseline_population]
     pop_energy = [model.energy(can) for can in population]
+    
+    converge(baseline_population, population, model)
+       
     return pop_energy
     
 

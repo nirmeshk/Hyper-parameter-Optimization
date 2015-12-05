@@ -86,33 +86,44 @@ class de():
 class ga():
     seed = 15678
     def __init__(self, setting = O(
-            gens = 15,
+            gens = 20,
             candidates = 50,
             better = lt,
             era = 100,
             retain = 0.33, #retain 33% of parents to next generation
-            mutate_prob = 0.25
+            mutate_prob = 0.25,
+            lives = 3,
+            # Initially set patience to lives. lives can be configured. Early terminate if no better frontier for 3 eras.
+            patience = 3,
             )):
         self.settings = setting
         
-    def optimize(self, model):
+    def optimize(self, model, population = None):
 
         ######   -- Log initial settings--  ######
         print(model)
         print("Settings: ")
         print(self.settings)
         #-----------------------------------------#
-
-
+        
         #========================================#
         #### -- Initialize the Population -- #####
         #========================================#
 
 
         # Generate thrice the candidate size for the first time
-        r.seed(15)
-        population = [model.generate(r) for _ in range(self.settings.candidates*3)]
         
+        if population is None:
+            n = self.settings.candidates
+            population = [model.generate(r) for _ in range(n*3)]
+            population = self.dominations(population, model)
+            frontier = population[:int(n*0.27)]
+            frontier += population[-int(n*0.06):] # For some variation
+            population = frontier
+        
+
+        print('GA initial * 3 pop = ', [model.eval(can) for can in population])
+
 
         directory = model.__class__.__name__ + '/'
         if os.path.exists(directory): shutil.rmtree(directory); os.makedirs(directory)  
@@ -154,13 +165,23 @@ class ga():
             
             if i == 0:
                 baseline_population = deepcopy(population[:])
-#                 print('printing baseline')
-#                 for can in baseline_population: print(can.decs)
-#                 print('printed baseline')
+                cur_era = prev_era = population
+
+            if i != 0 and i % self.settings.era == 0:
+                prev_era = cur_era
+                cur_era = population
+                if earlyTermination(prev_era, cur_era, model):
+                    self.settings.patience -= 1
+                    if self.settings.patience == 0:
+                        print ('Early Termination at ', str(i%self.settings.era + 1))
+                        break
+                else:
+                    self.settings.patience = self.settings.lives
 
             ga.graph_it(population, model, scale)
             print('.')
-        #return baseline_population, population
+
+        return baseline_population, population
   
     @staticmethod
     def dominations(population, model):

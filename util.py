@@ -1,3 +1,5 @@
+import sys
+
 def lt(i, j): return i < j
 
 def gt(i, j): return i > j
@@ -61,3 +63,24 @@ def earlyTermination(prev_era, cur_era, model):
             return False
     
     return True
+
+"""
+Checks convergence of a population with baseline population
+"""
+def converge(baseline_population, population, model):
+    dist_from_hell = 0
+    for can1 in population:
+        d = sys.maxint
+        for can2 in baseline_population:
+            d1 = sum([(x1 - x2)**2 for x1, x2 in zip(model.eval(can1), model.eval(can2))])
+            if d1 <= d:
+                d = d1
+                nearest_neighbour = can2
+                        
+        dist_from_hell += sum([(x1 - x2) for x1, x2 in zip(model.eval(can1), model.eval(nearest_neighbour))])
+    
+    print('Distance from hell = ' , dist_from_hell)
+    print('Baseline = ', [model.eval(can) for can in baseline_population])
+    print('Frontline = ', [model.eval(can) for can in population])
+    return dist_from_hell
+    

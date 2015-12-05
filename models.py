@@ -113,6 +113,9 @@ class Model(object):
         return at_least
 
 class GA_MODEL(Model):
+    population = []
+    population_model_instance = None
+    
     def __init__(self, model_instance):
         """
             Args:
@@ -126,7 +129,7 @@ class GA_MODEL(Model):
         self.decs.append(Decision(name="era", low=50, high=200))
         self.decs.append(Decision(name="retain", low=0.1, high=0.5))
         self.decs.append(Decision(name="mutate_prob", low=0.25, high=0.75))
-        self.decs.append(Decision(name="crossover_prob", low=0.65, high=0.99))
+        self.decs.append(Decision(name="crossover_prob", low=0.65, high=0.99))         
         
         def f1(can):
             settings = O(
@@ -138,7 +141,17 @@ class GA_MODEL(Model):
                 mutate_prob = can.decs[3]
                 )
             ga_ = ga(settings)
-            baseline_population, population = ga_.optimize(model_instance)
+            
+            if len(GA_MODEL.population) == 0 or (len(GA_MODEL.population) > 0 and type(GA_MODEL.population_model_instance) != type(model_instance)):
+                n = settings.candidates
+                population = [model_instance.generate(r) for _ in range(n*3)]
+                population = self.dominations(population, model_instance)
+                frontier = population[:int(n*0.27)]
+                frontier += population[-int(n*0.06):] # For some variation
+                GA_MODEL.population = frontier
+                GA_MODEL.population_model_instance = model_instance
+
+            baseline_population, population = ga_.optimize(model_instance, GA_MODEL.population)
             energy = [model_instance.energy(can) for can in population]
             
             return min(energy)
