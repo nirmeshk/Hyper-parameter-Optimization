@@ -19,11 +19,10 @@ class de():
     def __init__(self):
         self.settings = O(
             f = 0.75,
-            max = 10,
-            np = 5,
+            max = 100,
+            np = 50,
             cf = 0.3,
-            epsilon = 0.01,
-            me = 'de',)
+            epsilon = 0.01,)
         
     def optimize(self, model):
         print(self.__class__.__name__)
