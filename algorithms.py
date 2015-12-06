@@ -19,8 +19,8 @@ class de():
     def __init__(self):
         self.settings = O(
             f = 0.75,
-            max = 10,
-            np = 5,
+            max = 20,
+            np = 100,
             cf = 0.3,
             epsilon = 0.01,)
         
@@ -79,7 +79,7 @@ class de():
 class ga():
     def __init__(self, setting = O(
             gens = 200,
-            candidates = 500,
+            candidates = 400,
             era = 100,
             retain = 0.33, #retain 33% of parents to next generation
             mutate_prob = 0.25,
