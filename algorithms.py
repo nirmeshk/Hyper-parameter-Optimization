@@ -74,8 +74,8 @@ class de():
             for j in range(len(new.decs)):
                 if r.random() < self.settings.cf or j == c:
                     new.decs[j] = two.decs[j] + self.settings.f * (three.decs[j] - four.decs[j])
-                    if type(new.decs[j].low) is int:
-                        new.decs[j] = math.floor(new.decs[j])
+                    if type(model.decs[j].low) is int:
+                        new.decs[j] = int(new.decs[j])
 
             
             if model.ok(new):
