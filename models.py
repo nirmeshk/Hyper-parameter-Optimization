@@ -22,7 +22,7 @@ class Objective():
 
 class Candidate(object):
     "A candidate decision values, objective scores, and energy"
-    def __init__(self, decs = [], objs_score = [], energy = None):
+    def __init__(self, decs = [], objs_score = None, energy = None):
         self.decs = decs
         self.objs_score = objs_score
         self.energy = energy
@@ -30,8 +30,8 @@ class Candidate(object):
     def clone(self):
         new_can = Candidate()
         new_can.decs = deepcopy(self.decs)
-        new_can.objs_score = self.objs_score[:]
-        new_can.energy = self.energy
+        new_can.objs_score = None
+        new_can.energy = None
         return new_can
 
 class Model(object):
@@ -178,6 +178,13 @@ class GA_MODEL(Model):
             one = Candidate(decs = decs)
             if i.ok(one):
                 return one
+
+    def bdom(i, can_1, can_2):
+        "x dominates y if it losses least"
+        if can_1.objs_score is None: can_1.objs_score = i.objs[0].function(can_1) 
+        if can_2.objs_score is None: can_2.objs_score = i.objs[0].function(can_2) 
+        at_least = False
+        return i.objs[0].better(can_1.objs_score[0], can_2.objs_score[1])
 
     @staticmethod
     def dominations(population, model):

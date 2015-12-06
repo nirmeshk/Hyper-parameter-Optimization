@@ -28,42 +28,27 @@ class de():
         print(self.__class__.__name__)
         r.seed(15)
         
-	print ('DE: Generating baseline population (',self.settings.np , ') of GA_MODEL ')
-	population = [model.generate(r) for _ in range(self.settings.np)]
-        print ('DE: Generated Population ')
+    	population = [model.generate(r) for _ in range(self.settings.np)]
    
-        baseline_population = deepcopy(population[:])
-
-#         for can in baseline_population: print(can.decs)
-
-        frontier = []
-        
-	print ('DE: Sorting Population ')
-        for can_1 in population:
-            count = 1  # Number of candidates that can_1 dominates
-            for can_2 in population:
-                if model.cdom(can_1, can_2):
-                    count += 1
-            frontier.append((can_1, count))
-        
-        frontier = sorted(frontier, key = lambda (can, score): score)
-        frontier = [ can for can, score in frontier]
-
-	print ('DE: Sorted Population')
-
+        baseline_population = deepcopy(population)
+        frontier = deepcopy(baseline_population)
+            
         for max_ctr in range(self.settings.max):
             print ('DE: ', max_ctr, ' of ', self.settings.max)
             self.update(frontier, model, max_ctr)
         
-#         for can in frontier: print(can.decs)
         return baseline_population, frontier
 
     def update(self, frontier, model, max_ctr):
         for i, can in enumerate(frontier):
             print ('DE: overall :', max_ctr, ' ( ', i, ' ) ')
             new = self.extrapolate(frontier, model, can)
-            if model.cdom(new, can):
+            
+            if new is can: return
+                
+            if model.bdom(new, can):
                 frontier[i] = new
+                
 
         
     @staticmethod
@@ -83,8 +68,6 @@ class de():
                     new.decs[j] = two.decs[j] + self.settings.f * (three.decs[j] - four.decs[j])
                     if type(model.decs[j].low) is int:
                         new.decs[j] = int(new.decs[j])
-
-            
             if model.ok(new):
                 break
             

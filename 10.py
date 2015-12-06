@@ -16,7 +16,7 @@ def cal_loss(baseline_population, population, model):
 #     return pop_energy
 
 if __name__ == '__main__':   
-    for model in [GA_MODEL]:#, DTLZ_3, DTLZ_7, DTLZ_5]:
+    for model in [GA_MODEL]:
         dtlz1 = DTLZ_1(n=10, m=3)
         model = model(dtlz1)
         for optimizer in [de]:
