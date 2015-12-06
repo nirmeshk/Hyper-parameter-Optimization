@@ -128,7 +128,7 @@ class GA_MODEL(Model):
         self.n = 5
         self.m = model_instance.m      
         
-        self.decs = [Decision(name="gens", low=200, high=600)]
+        self.decs = [Decision(name="gens", low=200, high=500)]
         self.decs.append(Decision(name="era", low=50, high=200))
         self.decs.append(Decision(name="retain", low=0.1, high=0.5))
         self.decs.append(Decision(name="mutate_prob", low=0.25, high=0.75))
@@ -137,7 +137,7 @@ class GA_MODEL(Model):
         def f1(can):
             settings = O(
                 gens = can.decs[0],
-                candidates = 350,
+                candidates = 80,
                 era = can.decs[1],
                 retain = can.decs[2],
                 mutate_prob = can.decs[3],

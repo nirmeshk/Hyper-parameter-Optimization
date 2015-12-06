@@ -1,0 +1,70 @@
+INFO:root:gens = 268
+INFO:root:era = 179
+INFO:root:retain = 0.449813042149
+INFO:root:mutate_prob = 0.648807996189
+INFO:root:crossover_prob = 0.725953010499
+INFO:root:Divergence Score = 48.6758215245
+INFO:root:##############################
+INFO:root:gens = 240
+INFO:root:era = 182
+INFO:root:retain = 0.364702036941
+INFO:root:mutate_prob = 0.348858831204
+INFO:root:crossover_prob = 0.89566112691
+INFO:root:Divergence Score = 46.7457909466
+INFO:root:##############################
+INFO:root:gens = 229
+INFO:root:era = 51
+INFO:root:retain = 0.394396647919
+INFO:root:mutate_prob = 0.524938250066
+INFO:root:crossover_prob = 0.702671450111
+INFO:root:Divergence Score = 46.4885813148
+INFO:root:##############################
+INFO:root:gens = 237
+INFO:root:era = 51
+INFO:root:retain = 0.404473181763
+INFO:root:mutate_prob = 0.747586455441
+INFO:root:crossover_prob = 0.816687218593
+INFO:root:Divergence Score = 45.9604441656
+INFO:root:##############################
+INFO:root:gens = 272
+INFO:root:era = 101
+INFO:root:retain = 0.383277733194
+INFO:root:mutate_prob = 0.492247170897
+INFO:root:crossover_prob = 0.831251554922
+INFO:root:Divergence Score = 45.8340666614
+INFO:root:##############################
+INFO:root:gens = 250
+INFO:root:era = 172
+INFO:root:retain = 0.469740617866
+INFO:root:mutate_prob = 0.66078277396
+INFO:root:crossover_prob = 0.784570603883
+INFO:root:Divergence Score = 45.7920810899
+INFO:root:##############################
+INFO:root:gens = 388
+INFO:root:era = 149
+INFO:root:retain = 0.465709628576
+INFO:root:mutate_prob = 0.469108481398
+INFO:root:crossover_prob = 0.964443121296
+INFO:root:Divergence Score = 45.658470094
+INFO:root:##############################
+INFO:root:gens = 339
+INFO:root:era = 71
+INFO:root:retain = 0.399946088568
+INFO:root:mutate_prob = 0.484628119651
+INFO:root:crossover_prob = 0.940499751766
+INFO:root:Divergence Score = 45.1073315211
+INFO:root:##############################
+INFO:root:gens = 392
+INFO:root:era = 116
+INFO:root:retain = 0.382202223529
+INFO:root:mutate_prob = 0.716734869443
+INFO:root:crossover_prob = 0.962042319685
+INFO:root:Divergence Score = 45.0664920975
+INFO:root:##############################
+INFO:root:gens = 325
+INFO:root:era = 65
+INFO:root:retain = 0.457212296348
+INFO:root:mutate_prob = 0.60521989063
+INFO:root:crossover_prob = 0.897393150247
+INFO:root:Divergence Score = 44.9551267338
+INFO:root:##############################

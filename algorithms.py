@@ -20,7 +20,7 @@ class de():
         self.settings = O(
             f = 0.75,
             max = 50,
-            np = 20,
+            np = 10,
             cf = 0.3,
             epsilon = 0.01,)
         
@@ -44,9 +44,9 @@ class de():
             print ('DE: overall :', max_ctr, ' ( ', i, ' ) ')
             new = self.extrapolate(frontier, model, can)
             
-            if new is can: return
-                
-            if model.bdom(new, can):
+            if new is can:
+                pass
+            elif model.bdom(new, can):
                 frontier[i] = new
                 
 
