@@ -134,8 +134,7 @@ class GA_MODEL(Model):
         def f1(can):
             settings = O(
                 gens = can.decs[0],
-                candidates = 500,
-                better = lt,
+                candidates = 5,
                 era = can.decs[1],
                 retain = can.decs[2],
                 mutate_prob = can.decs[3],
@@ -164,7 +163,7 @@ class GA_MODEL(Model):
             
             return dist_from_hell
 
-        self.objs = [Objective(name = "f1", function = f1)]
+        self.objs = [Objective(name = "f1", function = f1, better=gt)]
 
     def generate(i, r_ = r):
         """ Generates a candidate """
@@ -183,8 +182,7 @@ class GA_MODEL(Model):
         "x dominates y if it losses least"
         if can_1.objs_score is None: can_1.objs_score = i.objs[0].function(can_1) 
         if can_2.objs_score is None: can_2.objs_score = i.objs[0].function(can_2) 
-        at_least = False
-        return i.objs[0].better(can_1.objs_score[0], can_2.objs_score[1])
+        return i.objs[0].better(can_1.objs_score, can_2.objs_score)
 
     @staticmethod
     def dominations(population, model):

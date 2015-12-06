@@ -19,8 +19,8 @@ class de():
     def __init__(self):
         self.settings = O(
             f = 0.75,
-            max = 100,
-            np = 50,
+            max = 10,
+            np = 5,
             cf = 0.3,
             epsilon = 0.01,)
         

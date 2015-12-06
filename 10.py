@@ -21,12 +21,13 @@ if __name__ == '__main__':
         model = model(dtlz1)
         for optimizer in [de]:
             baseline_population, population = optimizer().optimize(model)
+            
             population = [x for x in population if x.objs_score is not None]
-            print('Final population : ')
-            for can in population: 
-                print(can.decs)
-
+            population.sort(key = lambda can: can.objs_score)
+            for can in population:
+                for dec_info, dec in zip(model.decs, can.decs):
+                    print(dec_info.name,' = ', dec)
+                print('Divergence Score = ', can.objs_score)                    
+                print('#'*30)                    
+            
         print ("\n\n")
-
-    # untuned_baseline_population, untuned_population = ga.optimize(dtlz1)
-    # population.append()
