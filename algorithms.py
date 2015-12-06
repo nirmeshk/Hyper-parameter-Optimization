@@ -151,8 +151,13 @@ class ga():
 
         
         print('-')
-        for i in range(self.settings.gens):   
-            print('-')
+        for i in range(self.settings.gens):  
+            if i%50 == 0: 
+                print('')
+            else:
+                print('.', end='')
+            sys.stdout.flush()
+            
             # For the entire population, calculate its fitness score.
             # Fitness score is number of other can that a point dominates
             # After fitness calculation, retain x% of population as parents into next gen

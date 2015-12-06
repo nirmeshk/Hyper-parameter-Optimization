@@ -138,8 +138,8 @@ class GA_MODEL(Model):
                 era = can.decs[1],
                 retain = can.decs[2],
                 mutate_prob = can.decs[3],
-                lives = 3,
-                patience = 3,
+                lives = 1,
+                patience = 1,
                 )
             ga_ = ga(settings)
             
