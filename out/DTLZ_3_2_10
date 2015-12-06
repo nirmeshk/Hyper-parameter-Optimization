@@ -2,7 +2,9 @@
 Model: DTLZ_3
 Args:
 	number of decisions: 10
-	number of objectives: 2Settings: 
+	number of objectives: 2
+
+Settings: 
 {	:better <function lt at 0x10aaea1b8>
  	:candidates 500
  	:era 100
@@ -12,7 +14,8 @@ Args:
  	:patience 3
  	:retain 0.33
 }
- Baseline Population: 
+
+Baseline Population: 
 290.57754, 1088.31081
 178.72270, 1289.51195
 316.70540, 468.85246
