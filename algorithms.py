@@ -110,7 +110,7 @@ class ga():
 
         if self.fp:
             self.fp.write(str(model))
-            self.fp.write("Settings: \n")
+            self.fp.write("\nSettings: \n")
             self.fp.write(str(self.settings))
 
         
