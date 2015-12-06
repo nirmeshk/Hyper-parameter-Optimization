@@ -10,13 +10,18 @@ if __name__ == '__main__':
     #for obj in [2, 4, 6, 8]
     #for dec in [10, 20, 40]
 
-
-    for model in [DTLZ_1, DTLZ_3, DTLZ_5, DTLZ_7]:
+    for model in [Kursawe]:#DTLZ_1, DTLZ_3, DTLZ_5, DTLZ_7]:
         for optimizer in [ga]:
-            with open('out/' + model.__name__ + '_' + str(3) + '_' + str(10), 'w+') as fp:
-                model_instance =  model(m = 3, n = 10)    
-                baseline_population, population = optimizer(fp=fp).optimize(model_instance)      
-                c = divergence_from_baseline(baseline_population, population, model_instance)
-                log_base_and_final(baseline_population, population, model_instance, fp)
-                fp.write("divergence_from_baseline:{}".format(c))
-                fp.write('\n')
+            model_instance =  model()    
+            baseline_population, population = optimizer().optimize(model_instance)
+            print(model_instance.energy(population[0]))
+
+            #en = cal_loss(baseline_population, population, model_instance)
+            #if optimizer.__name__ == 'ga':
+            #    k = 0
+            #else:
+            #    k = 1
+            #rdiv[k].extend(en)
+        #print([rdiv])
+        #rdivDemo(rdiv)
+        #print ("\n\n")

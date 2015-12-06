@@ -413,6 +413,38 @@ class DTLZ_7(Model):
         s += "\n\tnumber of objectives: {}".format(self.m)
         return s
 
+class Kursawe(Model):
+
+    def __init__(i):
+        i.n = 3
+        i.m = 2   
+        i.decs = [Decision(name=d, low=-5, high=5) for d in range(3)]
+
+        def f1(can):
+            total = 0
+            for j in range(i.n-1):
+                e = -0.2 * (can.decs[0]**2 + can.decs[j+1]**2)**0.5
+                total += -10*exp(e)
+            return total
+
+        def f2(can):
+            total = 0
+            for j in range(i.n):
+                total+= abs(can.decs[j])**0.8 + 5*sin(can.decs[j]**3)
+            return total
+
+
+        i.objs = [Objective(name = "f1", function = f1, better=gt), Objective(name = "f2", function = f2, better=gt)]
+
+    def __repr__(self):
+        s = ""
+        s += "\nModel: {}".format(self.__class__.__name__)
+        s += "\nArgs:"
+        s += "\n\tnumber of decisions: {}".format(self.n)
+        s += "\n\tnumber of objectives: {}".format(self.m)
+        return s
+
+
 if __name__ == '__main__':
     a = DTLZ_3(5, 4)
     print(a)

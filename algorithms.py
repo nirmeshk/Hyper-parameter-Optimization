@@ -91,7 +91,6 @@ class ga():
     def __init__(self, setting = O(
             gens = 500,
             candidates = 500,
-            better = lt,
             era = 100,
             retain = 0.33, #retain 33% of parents to next generation
             mutate_prob = 0.25,
