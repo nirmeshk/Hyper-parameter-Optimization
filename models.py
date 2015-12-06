@@ -44,6 +44,9 @@ class Model(object):
         return []
 
     def ok(i, can):
+        for val,limit in zip(can.decs, i.decs):
+            if val < limit.low or val > limit.high:
+                return False 
         return True
 
     def eval(i, can):
