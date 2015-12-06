@@ -95,7 +95,7 @@ class de():
         
 class ga():
     def __init__(self, setting = O(
-            gens = 500,
+            gens = 200,
             candidates = 500,
             era = 100,
             retain = 0.33, #retain 33% of parents to next generation
