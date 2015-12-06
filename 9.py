@@ -7,7 +7,7 @@ import logging
 if __name__ == '__main__':
     # DTLZ 1,3,5,7 with 2,4,6,8 objectives and 10,20,40 decisions
     
-    for obj in [2, 4, 6, 8]:
+    for obj in [8]:
     #for dec in [10, 20, 40]
         for model in [DTLZ_1, DTLZ_3, DTLZ_5, DTLZ_7]:
             for optimizer in [ga]:
