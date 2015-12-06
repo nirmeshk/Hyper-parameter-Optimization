@@ -27,14 +27,18 @@ class de():
     def optimize(self, model):
         print(self.__class__.__name__)
         r.seed(15)
-        population = [model.generate(r) for _ in range(self.settings.np)]
-            
+        
+	print ('DE: Generating baseline population (',self.settings.np , ') of GA_MODEL ')
+	population = [model.generate(r) for _ in range(self.settings.np)]
+        print ('DE: Generated Population ')
+   
         baseline_population = deepcopy(population[:])
 
 #         for can in baseline_population: print(can.decs)
 
         frontier = []
         
+	print ('DE: Sorting Population ')
         for can_1 in population:
             count = 1  # Number of candidates that can_1 dominates
             for can_2 in population:
@@ -44,6 +48,8 @@ class de():
         
         frontier = sorted(frontier, key = lambda (can, score): score)
         frontier = [ can for can, score in frontier]
+
+	print ('DE: Sorted Population')
 
         for max_ctr in range(self.settings.max):
             print ('DE: ', max_ctr, ' of ', self.settings.max)
@@ -94,8 +100,8 @@ class ga():
             era = 100,
             retain = 0.33, #retain 33% of parents to next generation
             mutate_prob = 0.25,
-            lives = 3,
-            patience = 3
+            lives = 1,
+            patience = 1
             ), visualize = False, fp = None):
         self.settings = setting
         self.visualize = visualize
