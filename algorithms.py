@@ -46,14 +46,16 @@ class de():
         frontier = sorted(frontier, key = lambda (can, score): score)
         frontier = [ can for can, score in frontier]
 
-        for _ in range(self.settings.max):
-            self.update(frontier, model)
+        for max_ctr in range(self.settings.max):
+            print ('DE: ', max_ctr, ' of ', self.settings.max)
+            self.update(frontier, model, max_ctr)
         
 #         for can in frontier: print(can.decs)
         return baseline_population, frontier
 
-    def update(self, frontier, model):
+    def update(self, frontier, model, max_ctr):
         for i, can in enumerate(frontier):
+            print ('DE: overall :', max_ctr, ' ( ', i, ' ) ')
             new = self.extrapolate(frontier, model, can)
             if model.cdom(new, can):
                 frontier[i] = new
