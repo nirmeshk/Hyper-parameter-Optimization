@@ -88,17 +88,18 @@ class de():
         
 class ga():
     def __init__(self, setting = O(
-            gens = 200,
-            candidates = 100,
+            gens = 500,
+            candidates = 500,
             better = lt,
-            era = 10,
+            era = 100,
             retain = 0.33, #retain 33% of parents to next generation
             mutate_prob = 0.25,
             lives = 3,
             patience = 3
-            ), visualize = False):
+            ), visualize = False, fp = None):
         self.settings = setting
         self.visualize = visualize
+        self.fp = fp
         
     def optimize(self, model, population = None):
 
@@ -106,6 +107,12 @@ class ga():
         print(model)
         print("Settings: ")
         print(self.settings)
+
+        if self.fp:
+            self.fp.write(str(model))
+            self.fp.write("Settings: \n")
+            self.fp.write(str(self.settings))
+
         
         #-----------------------------------------#
         
@@ -120,9 +127,8 @@ class ga():
             n = self.settings.candidates
             population = [model.generate(r) for _ in range(n*3)]
             population = self.dominations(population, model)
-            frontier = population[:int(n*0.37)]
-            frontier += population[-int(n*0.20):] # For some variation
-            print(len(frontier))
+            frontier = population[:int(n*3*0.37)]
+            frontier += population[-int(n*3*0.20):] # For some variation
             r.shuffle(frontier)
             population = frontier[:n]
         
@@ -185,6 +191,7 @@ class ga():
                     self.settings.patience -= 1
                     if self.settings.patience == 0:
                         print ('Early Termination at ', str(i%self.settings.era + 1))
+                        if self.fp: self.fp.write('Early Termination at {}\n'.format(i%self.settings.era + 1))
                         break
                 else:
                     self.settings.patience = self.settings.lives
