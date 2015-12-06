@@ -3,7 +3,23 @@
 - Part of this experiment, we tried to analyse the behaviour of GA on DTLZ using the animation.
 
 
-- Here is the little animation:
+Here is the little animation for DTLZ 1 - 7 with following settings:
+```
+Settings: 
+{	
+  :better lt
+ 	:candidates 500
+ 	:era 100
+ 	:gens 500
+ 	:mutate_prob 0.25
+ 	:patience 3       # For early termination
+ 	:lives 3          # For early termination
+ 	:retain 0.33      # % of parents that we retain for next generation
+}
+```
+
+
+
 - ![DTLZ_1 Optimization using GA](http://i.imgur.com/BISkpyY.gifv) 
 - ![DTLZ_3](http://i.imgur.com/KjtuaQd.gif) 
 - ![DTLZ_5](http://i.imgur.com/XZlNEIw.gif)
