@@ -121,20 +121,24 @@ class ga():
         #========================================#
 
 
+        print('before start') 
         # Generate thrice the candidate size for the first time
         n = self.settings.candidates
         if population is None:
             n = self.settings.candidates
             population = [model.generate(r) for _ in range(n*3)]
+            print('after pop generated') 
             population = self.dominations(population, model)
-            frontier = population[:int(n*3*0.37)]
-            frontier += population[-int(n*3*0.20):] # For some variation
+            print('after pop generated') 
+            frontier = population[:n]
+            frontier += population[-n:] # For some variation
             r.shuffle(frontier)
             population = frontier[:n]
         
         baseline_population = deepcopy(population[:])
         cur_era = prev_era = deepcopy(population[:])
-         
+        
+        print('start') 
         #=================================#
         ###  Visualization Code        ####
         #=================================#
@@ -157,9 +161,9 @@ class ga():
         #=================================================#
 
         
-
+        print('-')
         for i in range(self.settings.gens):   
-            print('-', end='')
+            print('-')
             # For the entire population, calculate its fitness score.
             # Fitness score is number of other can that a point dominates
             # After fitness calculation, retain x% of population as parents into next gen
@@ -185,6 +189,7 @@ class ga():
 
             # Check for early termination
             if i != 0 and i % self.settings.era == 0:
+                print('\n')
                 prev_era = cur_era
                 cur_era = population
                 if earlyTermination(prev_era, cur_era, model):
@@ -197,6 +202,7 @@ class ga():
                     self.settings.patience = self.settings.lives
 
             if self.visualize: ga.graph_it(population, model, scale)
+
 
         return baseline_population, population
   

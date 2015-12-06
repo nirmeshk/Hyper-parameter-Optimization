@@ -13,8 +13,8 @@ if __name__ == '__main__':
 
     for model in [DTLZ_1, DTLZ_3, DTLZ_5, DTLZ_7]:
         for optimizer in [ga]:
-            with open('out/' + model.__name__ + '_' + str(2) + '_' + str(10), 'w+') as fp:
-                model_instance =  model(m = 2, n = 10)    
+            with open('out/' + model.__name__ + '_' + str(3) + '_' + str(10), 'w+') as fp:
+                model_instance =  model(m = 3, n = 10)    
                 baseline_population, population = optimizer(fp=fp).optimize(model_instance)      
                 c = divergence_from_baseline(baseline_population, population, model_instance)
                 log_base_and_final(baseline_population, population, model_instance, fp)
