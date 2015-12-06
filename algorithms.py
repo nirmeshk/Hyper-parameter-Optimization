@@ -20,7 +20,7 @@ class de():
         self.settings = O(
             f = 0.75,
             max = 20,
-            np = 100,
+            np = 5,
             cf = 0.3,
             epsilon = 0.01,)
         

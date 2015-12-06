@@ -134,7 +134,7 @@ class GA_MODEL(Model):
         def f1(can):
             settings = O(
                 gens = can.decs[0],
-                candidates = 500,
+                candidates = 5,
                 era = can.decs[1],
                 retain = can.decs[2],
                 mutate_prob = can.decs[3],
