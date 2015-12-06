@@ -1,0 +1,5 @@
+easy_install --user pip
+vim .bashrc
+source .bashrc
+pip install --user matplotlib
+
