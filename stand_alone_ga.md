@@ -1,4 +1,9 @@
+#### Contributors:
+- Nirmesh Khandelwal
+- Anand Bora
+- Ravi Singh
 
+#### Summary
 - As a part of this experiment, we tried to implement A simple GA and analyse its behaviour on various DTLZ models.
 - Part of this experiment, we tried to analyse the behaviour of GA on DTLZ using the animation.
 
