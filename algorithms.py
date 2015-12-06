@@ -170,11 +170,21 @@ class ga():
             population = self.dominations(population, model)
 
             # Retain self.settings.retain % elite parents
-            frontier = population[:int(n*self.settings.retain)]
+            to_retain = n*self.settings.retain
+            if int(to_retain) is 0:
+                to_retain = 1
+            frontier = population[:int(to_retain)]
 
             # For some variation, retain some bad candidates
+            to_retain = to_retain * 0.5
+            if int(to_retain) is 0:
+                to_retain = 1
             frontier += population[-int(n*self.settings.retain*0.5):] 
 
+            # Safety check if frontier goes above n.
+            if len(frontier) > n:
+                frontier = frontier[:n]
+            
             # Add all the elite parents to next generation
             next_generation = frontier[:]
 
@@ -194,9 +204,10 @@ class ga():
                 cur_era = population
                 if earlyTermination(prev_era, cur_era, model):
                     self.settings.patience -= 1
+                    print('Patience = ', self.settings.patience)
                     if self.settings.patience == 0:
-                        print ('Early Termination at ', str(i%self.settings.era + 1))
-                        if self.fp: self.fp.write('Early Termination at {}\n'.format(i%self.settings.era + 1))
+                        print ('Early Termination at ', str(int(i/self.settings.era)))
+                        if self.fp: self.fp.write('Early Termination at {}\n'.format(int(i%self.settings.era)))
                         break
                 else:
                     self.settings.patience = self.settings.lives

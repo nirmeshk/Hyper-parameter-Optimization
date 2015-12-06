@@ -145,16 +145,22 @@ class GA_MODEL(Model):
             ga_ = ga(settings)
             
             if len(GA_MODEL.population) == 0 or (len(GA_MODEL.population) > 0 and type(GA_MODEL.population_model_instance) != type(model_instance)):
+                # From GA algorithm
                 n = settings.candidates
                 population = [model_instance.generate(r) for _ in range(n*3)]
+                print('In GA model: after pop generated') 
                 population = self.dominations(population, model_instance)
-                frontier = population[:int(n*0.27)]
-                frontier += population[-int(n*0.06):] # For some variation
-                GA_MODEL.population = frontier
+                print('In GA model: after pop generated') 
+                frontier = population[:n]
+                frontier += population[-n:] # For some variation
+                r.shuffle(frontier)
+                population = frontier[:n]
+
+                GA_MODEL.population = population
                 GA_MODEL.population_model_instance = model_instance
 
             baseline_population, population = ga_.optimize(model_instance, GA_MODEL.population)
-            dist_from_hell = converge(baseline_population, population, model_instance) 
+            dist_from_hell = divergence_from_baseline(baseline_population, population, model_instance) 
             
             return dist_from_hell
 
@@ -250,8 +256,7 @@ class DTLZ_1(Model):
         s += "\n\tnumber of decisions: {}".format(self.n)
         s += "\n\tnumber of objectives: {}".format(self.m)
         return s
-
-
+    
 
 class DTLZ_3(Model):
     def __init__(self, n=10, m=2):
