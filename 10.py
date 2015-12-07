@@ -17,10 +17,10 @@ def cal_loss(baseline_population, population, model):
 #     return pop_energy
 
 if __name__ == '__main__':   
-    logging.basicConfig(filename='10.log',filemode='w+', level=logging.INFO)
+    logging.basicConfig(filename='10_'+str(int(time.time()))+'.log' ,filemode='w+', level=logging.INFO)
 
     for model in [GA_MODEL]:
-        dtlz1 = DTLZ_1(n=5, m=2)
+        dtlz1 = DTLZ_1(n=7, m=3)
         model = model(dtlz1)
         for optimizer in [de]:
             baseline_population, population = optimizer().optimize(model)
@@ -30,7 +30,10 @@ if __name__ == '__main__':
             for can in population:
                 for dec_info, dec in zip(model.decs, can.decs):
                     logging.info(str(dec_info.name + ' = ' + str(dec)))
-                logging.info('Divergence Score = ' + str(can.objs_score))                    
-                logging.info(str('#'*30))                    
+                    print(str(dec_info.name + ' = ' + str(dec)))
+                logging.info('Divergence Score = ' + str(can.objs_score))   
+                print('Divergence Score = ' + str(can.objs_score))
+                logging.info(str('#'*30))   
+                print(str('#'*30)) 
             
         print ("\n\n")
