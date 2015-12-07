@@ -45,7 +45,7 @@ class de():
             new = self.extrapolate(frontier, model, can)
             
             if new is can:
-                pass
+                continue
             elif model.bdom(new, can):
                 frontier[i] = new
                 
