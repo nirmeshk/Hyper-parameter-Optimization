@@ -79,7 +79,7 @@ class de():
 class ga():
     def __init__(self, setting = O(
             gens = 200,
-            candidates = 400,
+            candidates = 300,
             era = 100,
             retain = 0.33, #retain 33% of parents to next generation
             mutate_prob = 0.25,
