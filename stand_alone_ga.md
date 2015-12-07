@@ -32,4 +32,4 @@ Settings:
 
 |Model Name   |  Decisions  | Objectives  | Final Divergence | Final Best Energy | Hypervolume |
 |-------------|-------------|-------------|------------------|-------------------|-------------|
-| DTLZ_1      | 10          | 2           |                  | ||
+| DTLZ_1      | 10          | 2           |   64.96506       |                   |  743671.4183|
