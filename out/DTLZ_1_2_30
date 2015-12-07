@@ -1,4 +1,3 @@
-
 Model: DTLZ_1
 Args:
 	number of decisions: 30
@@ -13,7 +12,7 @@ Settings:
  	:patience 3
  	:retain 0.33
 }
- Baseline Population: 
+Baseline Population: 
 117.81683, 1245.91451
 104.17967, 1703.77600
 523.03540, 1008.55131
@@ -515,7 +514,7 @@ Settings:
 672.59786, 865.08356
 177.24328, 946.66679
 
- Final Population: 
+Final Population: 
 78.47402, 82.01845
 78.47402, 82.01845
 78.47402, 82.01845

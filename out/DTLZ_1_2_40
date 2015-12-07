@@ -12,7 +12,7 @@ Settings:
  	:patience 1
  	:retain 0.33
 }
- Baseline Population: 
+Baseline Population: 
 526.77230, 1796.42430
 1358.07202, 441.77104
 1718.41286, 213.65850
@@ -514,7 +514,7 @@ Settings:
 586.22331, 1747.76795
 1859.42298, 30.23878
 
- Final Population: 
+Final Population: 
 18.51132, 2051.40131
 18.75725, 2078.65549
 19.13678, 2120.71453
