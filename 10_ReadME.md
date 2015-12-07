@@ -80,3 +80,86 @@ crossover_prob = 0.670825648991
 Divergence Score = 40.5403728365
 ##############################
 
+
+Medium: (Population size of 80)
+gens = 268
+era = 179
+retain = 0.449813042149
+mutate_prob = 0.648807996189
+crossover_prob = 0.725953010499
+Divergence Score = 48.6758215245
+##############################
+gens = 240
+era = 182
+retain = 0.364702036941
+mutate_prob = 0.348858831204
+crossover_prob = 0.89566112691
+Divergence Score = 46.7457909466
+##############################
+gens = 229
+era = 51
+retain = 0.394396647919
+mutate_prob = 0.524938250066
+crossover_prob = 0.702671450111
+Divergence Score = 46.4885813148
+##############################
+gens = 237
+era = 51
+retain = 0.404473181763
+mutate_prob = 0.747586455441
+crossover_prob = 0.816687218593
+Divergence Score = 45.9604441656
+##############################
+gens = 272
+era = 101
+retain = 0.383277733194
+mutate_prob = 0.492247170897
+crossover_prob = 0.831251554922
+Divergence Score = 45.8340666614
+##############################
+gens = 250
+era = 172
+retain = 0.469740617866
+mutate_prob = 0.66078277396
+crossover_prob = 0.784570603883
+Divergence Score = 45.7920810899
+##############################
+gens = 388
+era = 149
+retain = 0.465709628576
+mutate_prob = 0.469108481398
+crossover_prob = 0.964443121296
+Divergence Score = 45.658470094
+##############################
+gens = 339
+era = 71
+retain = 0.399946088568
+mutate_prob = 0.484628119651
+crossover_prob = 0.940499751766
+Divergence Score = 45.1073315211
+##############################
+gens = 392
+era = 116
+retain = 0.382202223529
+mutate_prob = 0.716734869443
+crossover_prob = 0.962042319685
+Divergence Score = 45.0664920975
+##############################
+gens = 325
+era = 65
+retain = 0.457212296348
+mutate_prob = 0.60521989063
+crossover_prob = 0.897393150247
+Divergence Score = 44.9551267338
+##############################
+Untuned:
+Settings: 
+{	:candidates 80
+ 	:era 100
+ 	:gens 300
+ 	:lives 1
+ 	:mutate_prob 0.5
+ 	:patience 1
+ 	:retain 0.3
+} divergence_from_baseline:24.2923324974
+
