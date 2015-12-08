@@ -69,7 +69,7 @@ We ran it for DTLZ1 (2 objectives and 5 decisions) and for GA algorithm for 80 a
 | 6  | tuned | 28.11 | { gens = 240,era = 67, retain = 0.49, mutate_prob = 0.48 } |
 | 7  | tuned | 27.32 | { gens = 441, era = 98, retain = 0.49, mutate_prob = 0.62 } |
 | 8  | tuned | 24.10 | { gens = 503, era = 114, retain = 0.23, mutate_prob = 0.39 } |
-| 9  | tuned | 22.7358913244 | { gens = 578, era = 58, retain = 0.40, mutate_prob = 0.33 } |
+| 9  | tuned | 22.73 | { gens = 578, era = 58, retain = 0.40, mutate_prob = 0.33 } |
 | 10  | tuned | 22.60 | { gens = 389, era = 184, retain = 0.39, mutate_prob = 0.48 } |
 | 11 | tuned | 18.80 | { gens = 429, era = 107, retain = 0.29, mutate_prob = 0.33 } |
 
