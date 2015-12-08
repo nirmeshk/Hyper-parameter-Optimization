@@ -10,7 +10,7 @@
 - We used DE algorithm with following default settings: 
 ```
   Settings: 
-    {	
+    { 
       f = 0.75,         # extrapolate amount
       max = 50,         # number of repeats 
       np = 10,          # number of candidates
