@@ -38,8 +38,9 @@
 - A good objective score to measure for 1) Early termination 2) Comparing different GA optimizers.
 - Even tried some easy models, but those models lack interesing results as they are easily optimized in very few generations. Also, the GA code n*n was the main culprit after we did some profiling.
 
-
-
+### Results:
+We observed that tuned GAs performed better than untuned GA.
+We ran it for DTLZ1 (2 objectives and 5 decisions) and for GA algorithm for 80 and 200 candidate sizes.
 
 
 |Model Name   |  Decisions  | Objectives  | Final Divergence | Final Best Energy | Hypervolume |
