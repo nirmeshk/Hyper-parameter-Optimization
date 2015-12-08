@@ -46,18 +46,32 @@ We ran it for DTLZ1 (2 objectives and 5 decisions) and for GA algorithm for 80 a
 
 | Rank | Tuned / Untuned | Final Divergence | Settings |
 |-------------|-------------|-------------|------------------|
-| 1  | tuned | 56.09 | { gens = 398, era = 71, retain = 0.46, mutate_prob = 0.57 }   |
-| 2  | tuned | 55.44 | { gens = 454, era = 80, retain = 0.45, mutate_prob = 0.44 }   |
+| 1  | tuned | 56.09 | { gens = 398, era = 71 , retain = 0.46, mutate_prob = 0.57 }  |
+| 2  | tuned | 55.44 | { gens = 454, era = 80 , retain = 0.45, mutate_prob = 0.44 }  |
 | 3  | tuned | 54.63 | { gens = 404, era = 197, retain = 0.42, mutate_prob = 0.43 }  |
-| 4  | tuned | 52.83 | { gens = 587, era = 51, retain = 0.39, mutate_prob = 0.42 }   |
+| 4  | tuned | 52.83 | { gens = 587, era = 51 , retain = 0.39, mutate_prob = 0.42 }  |
 | 5  | tuned | 50.57 | { gens = 292, era = 173, retain = 0.27, mutate_prob = 0.41 }  |
 | 6  | tuned | 49.22 | { gens = 206, era = 143, retain = 0.38, mutate_prob = 0.39 }  |
-| 7  | tuned | 47.92 | { gens = 476, era = 77, retain = 0.38, mutate_prob = 0.49 }   |
+| 7  | tuned | 47.92 | { gens = 476, era = 77 , retain = 0.38, mutate_prob = 0.49 }  |
 | 8  | tuned | 45.92 | { gens = 386, era = 157, retain = 0.34, mutate_prob = 0.67 }  |
 | 9  | tuned | 44.58 | { gens = 231, era = 135, retain = 0.26, mutate_prob = 0.36 }  |
 | 10 | tuned | 42.23 | { gens = 570, era = 186, retain = 0.27, mutate_prob = 0.34 }  |
-| 11 | *un-tuned* | 35.97 | { gens = 400, era = 125, retain = 0.44, mutate_prob = 0.64 } |
+| 11 | **un-tuned** | 35.97 | { gens = 400, era = 125, retain = 0.44, mutate_prob = 0.64 } |
 
+##### Large (200 GA candidates, DTLZ1 - 2 Objectives, 5 Decisions)
+| Rank | Tuned / Untuned | Final Divergence | Settings |
+|-------------|-------------|-------------|------------------|
+| 1  | tuned | 35.48 | { gens = 291, era = 179, retain = 0.44, mutate_prob = 0.64 } |
+| 2 | **un-tuned** | 34.31 | { gens = 400, era = 125, retain = 0.44, mutate_prob = 0.64 } |
+| 3  | tuned | 31.79 | { gens = 356, era = 72, retain = 0.37, mutate_prob = 0.57 } |
+| 4  | tuned | 31.78 | { gens = 334, era = 73, retain = 0.45, mutate_prob = 0.50 } |
+| 5  | tuned | 31.65 | { gens = 457, era = 156, retain = 0.49, mutate_prob = 0.39 } |
+| 6  | tuned | 28.11 | { gens = 240,era = 67, retain = 0.49, mutate_prob = 0.48 } |
+| 7  | tuned | 27.32 | { gens = 441, era = 98, retain = 0.49, mutate_prob = 0.62 } |
+| 8  | tuned | 24.10 | { gens = 503, era = 114, retain = 0.23, mutate_prob = 0.39 } |
+| 9  | tuned | 22.7358913244 | { gens = 578, era = 58, retain = 0.40, mutate_prob = 0.33 } |
+| 10  | tuned | 22.60 | { gens = 389, era = 184, retain = 0.39, mutate_prob = 0.48 } |
+| 11 | tuned | 18.80 | { gens = 429, era = 107, retain = 0.29, mutate_prob = 0.33 } |
 
 ### Future Work:
 - Optimize the algorithm to make it faster. 
