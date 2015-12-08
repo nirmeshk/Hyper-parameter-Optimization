@@ -42,10 +42,21 @@
 We observed that tuned GAs performed better than untuned GA.
 We ran it for DTLZ1 (2 objectives and 5 decisions) and for GA algorithm for 80 and 200 candidate sizes.
 
+##### Small (80 GA candidates, DTLZ1 - 2 Objectives, 5 Decisions)
 
-|Model Name   |  Decisions  | Objectives  | Final Divergence | Final Best Energy | Hypervolume |
-|-------------|-------------|-------------|------------------|-------------------|-------------|
-| DTLZ_1      | 10          | 2           |   64.96506       |   3.37297         |  743671.4183|
+| Rank | Tuned / Untuned | Final Divergence | Settings |
+|-------------|-------------|-------------|------------------|
+| 1  | tuned | 56.09 | { gens = 398, era = 71, retain = 0.46, mutate_prob = 0.57 }   |
+| 2  | tuned | 55.44 | { gens = 454, era = 80, retain = 0.45, mutate_prob = 0.44 }   |
+| 3  | tuned | 54.63 | { gens = 404, era = 197, retain = 0.42, mutate_prob = 0.43 }  |
+| 4  | tuned | 52.83 | { gens = 587, era = 51, retain = 0.39, mutate_prob = 0.42 }   |
+| 5  | tuned | 50.57 | { gens = 292, era = 173, retain = 0.27, mutate_prob = 0.41 }  |
+| 6  | tuned | 49.22 | { gens = 206, era = 143, retain = 0.38, mutate_prob = 0.39 }  |
+| 7  | tuned | 47.92 | { gens = 476, era = 77, retain = 0.38, mutate_prob = 0.49 }   |
+| 8  | tuned | 45.92 | { gens = 386, era = 157, retain = 0.34, mutate_prob = 0.67 }  |
+| 9  | tuned | 44.58 | { gens = 231, era = 135, retain = 0.26, mutate_prob = 0.36 }  |
+| 10 | tuned | 42.23 | { gens = 570, era = 186, retain = 0.27, mutate_prob = 0.34 }  |
+| 11 | *un-tuned* | 35.97 | { gens = 400, era = 125, retain = 0.44, mutate_prob = 0.64 } |
 
 
 ### Future Work:
