@@ -74,10 +74,30 @@ All the raw outputs can be found inside the folder out/ . Here is the summary re
 
 |Model Name   |  Decisions  | Objectives  | Final Divergence | Final Best Energy | Hypervolume |
 |-------------|-------------|-------------|------------------|-------------------|-------------|
-| DTLZ_1      | 10          | 2           |   64.9650607772               | ||
-| DTLZ_1      | 30          | 2           |   317.831749634               | ||
-| DTLZ_1      | 40          | 2           |   160.574922758               | ||
-| DTLZ_1      | 10          | 3           |   122.950686056               | ||
+| DTLZ_1      | 10          | 2           | 64.9650607772    | ||
+| DTLZ_1      | 30          | 2           | 317.831749634    | ||
+| DTLZ_1      | 40          | 2           | 160.574922758    | ||
+| DTLZ_1      | 10          | 3           | 122.950686056    | ||
+| DTLZ_1      | 10          | 4           | 109.689910168    | ||
+| DTLZ_1      | 10          | 6           | 90.509442913     | ||
+| DTLZ_1      | 10          | 8           | 58.359461992     | ||
+| DTLZ_3      | 10          | 2           | 135.721350287    | ||
+| DTLZ_3      | 30          | 2           | 760.204008197    | ||
+| DTLZ_3      | 40          | 2           | 903.483315609    | ||
+| DTLZ_3      | 10          | 3           | 191.609929704    | ||
+| DTLZ_3      | 10          | 4           | 158.073500707    | ||
+| DTLZ_3      | 40          | 4           | 408.348147997    | ||
+
+
+
+
+
+
+
+
+
+
+
 
 ### Future Work:
 The the parameters of GA to see which configuaration works best.
