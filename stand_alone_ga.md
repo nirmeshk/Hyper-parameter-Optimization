@@ -56,7 +56,7 @@ Settings:
 - Here are some of the problems that we faced and how we improved on them:
 	+ **Binary domination vs Continuous domination issues:** we noticed that for 2-3 objetives, the bdom works fine. But as we move to higher dimensional space, the binary domination is not able to figure out the comparison between two candidates. So finally, we switched to continuous domination and it worked well.
 	+ **Lack of variation (spread) in population because of Elite sampling:** Initially, we were choosing top x% of the population to be parents for next generation. Because of that, everything was converging to single point or small cluster. In order to solve this problem, we decided to choose some bad parents along with elites for next gen. This increased the spread of the solution. 
-	+ ** A good metric for comparing the results: ** 
+	+ **A good metric for comparing the results:** 
 		- Hypervolume is a good metric. So we have used that. The problem with hypervolume is that, it is hard to know how far have we moved from baseline population after optimization. 
 		- We were not able to use the spread as it requires True pareto frontiers for the problems. Jmetal website only provides two PF for few objectives.
 		- A good metric is convergence to True pareto frontier. It is average distance of your frontier from the True PF. The problem is again, we do not have True PF for all the problems.
