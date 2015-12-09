@@ -3,9 +3,19 @@
 - Anand Bora
 - Ravi Singh
 
-#### Summary
-- As a part of this experiment, we tried to implement A simple GA and analyse its behaviour on various DTLZ models.
-- Part of this experiment, we tried to analyse the behaviour of GA on DTLZ using the animation.
+### Abstract:
+Genetic Algorithm is a class of Evolutionay algorithms used for optimizing multiobjective models. Genetic Algorithm is inspired by real life evolution. The basic idea is to try to generate better ppopulation by selection, crossover and mutation of current memebers of population. The main difficulty faced by optimizers is that it is difficult to get a good optimization before you know the problem charectristic or landscape. As a part of this experiment, we try to implement a GA and analyse its behaviour on various DTLZ models. 
+
+### GA Algorithm implementation
+Here is what we did:
+
+- Generate a random population in the start.
+- Sort the entire population based on their domination scores in increasing order. A domination score of candidate 'a' is number of other candidates that dominate 'a'.
+- Choose first x% and last y% from the sorted population to be parents for next generation. 
+- Produce `total_population_size - len(parents)` new children by select , crossover and mutate among parents. 
+- parents + new children contitute next generation.
+
+
 
 
 Here is the little animation for DTLZ 1 - 7 with following settings:
