@@ -15,6 +15,23 @@ Here is what we did:
 - Produce `total_population_size - len(parents)` new children by select , crossover and mutate among parents. 
 - parents + new children contitute next generation.
 
+- Here is the basic code for the implementation:
+```python
+def GA(model):
+	population = [model.generate() for _ in pop_size]
+	population.sort(key = lambda can: can.domination_score)
+
+	parents = population[:x] + population[-y:]
+
+	next_gen = parents[:]
+
+	while len(next_gen)  < len(population):
+		papa, mama = select(parents)
+		son = crossover(papa, mama)
+		son = mutate(son)
+		next_gen.append(son)
+```
+
 
 
 
