@@ -22,7 +22,7 @@ def GA(model):
 	
 	for _ in range(number_of_gen):
 		population.sort(key = lambda can: can.domination_score)
-		parents = population[:x] + population[-y:]
+		parents = population[:x] + population[-y:]        # Keep top x% and bottom y%
 		next_gen = parents[:]
 
 		while len(next_gen)  < len(population):
