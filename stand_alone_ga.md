@@ -70,6 +70,7 @@ Settings:
 	+ DTLZ_7 ![DTLZ_7](http://i.imgur.com/MbjngQ6.gif)  
 
 ### Results:
+All the raw outputs can be found inside the folder out/ . Here is the summary results
 
 |Model Name   |  Decisions  | Objectives  | Final Divergence | Final Best Energy | Hypervolume |
 |-------------|-------------|-------------|------------------|-------------------|-------------|
