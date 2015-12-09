@@ -74,7 +74,10 @@ All the raw outputs can be found inside the folder out/ . Here is the summary re
 
 |Model Name   |  Decisions  | Objectives  | Final Divergence | Final Best Energy | Hypervolume |
 |-------------|-------------|-------------|------------------|-------------------|-------------|
-| DTLZ_1      | 10          | 2           |                  | ||
+| DTLZ_1      | 10          | 2           |   64.9650607772               | ||
+| DTLZ_1      | 30          | 2           |   317.831749634               | ||
+| DTLZ_1      | 40          | 2           |   160.574922758               | ||
+| DTLZ_1      | 10          | 3           |   122.950686056               | ||
 
 ### Future Work:
 The the parameters of GA to see which configuaration works best.
