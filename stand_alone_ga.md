@@ -15,31 +15,33 @@ Here is what we did:
 - Produce `total_population_size - len(parents)` new children by select , crossover and mutate among parents. 
 - parents + new children contitute next generation.
 
-- Here is the basic code for the implementation:
+- Here is the basic code for the implementation (Just for explanation purpose):
 ```python
 def GA(model):
 	population = [model.generate() for _ in pop_size]
-	population.sort(key = lambda can: can.domination_score)
+	
+	for _ in range(number_of_gen):
+		population.sort(key = lambda can: can.domination_score)
+		parents = population[:x] + population[-y:]
+		next_gen = parents[:]
 
-	parents = population[:x] + population[-y:]
+		while len(next_gen)  < len(population):
+			papa, mama = select(parents)
+			son = crossover(papa, mama)
+			son = mutate(son)
+			next_gen.append(son)
 
-	next_gen = parents[:]
-
-	while len(next_gen)  < len(population):
-		papa, mama = select(parents)
-		son = crossover(papa, mama)
-		son = mutate(son)
-		next_gen.append(son)
+		population = next_gen[:]
 ```
 
+### Experimentation:
 
+- Basic setup configuration:
 
-
-Here is the little animation for DTLZ 1 - 7 with following settings:
 ```
 Settings: 
 {   
-  :better lt
+    :better lt
     :candidates 500
     :era 100
     :gens 500
@@ -50,12 +52,17 @@ Settings:
 }
 ```
 
+- In order to know if the algorithm is working correctly, we used some visual pointers.
+- Here are some of the problems that we faced and how we improved on them:
+	+ **Binary domination vs Continuous domination issues:** we noticed that for 2-3 objetives, the bdom works fine. But as we move to higher dimensional space, the binary domination is not able to figure out the comparison between two candidates. So finally, we switched to continuous domination and it worked well.
+	+ **Lack of variation (spread) in population because of Elite sampling**: Initially, we were choosing top x% of the population to be parents for next generation. Because of that, everything was converging to single point or small cluster. In order to solve this problem, we decided to choose some bad parents along with elites for next gen. This increased the spread of the solution. 
 
+- Some visual aids that helped in deciding if we are going in correct direction.:
 
-- DTLZ_1 ![DTLZ_1 Optimization using GA](http://i.imgur.com/BISkpyY.gifv) 
-- DTLZ_3 ![DTLZ_3](http://i.imgur.com/KjtuaQd.gif) 
-- DTLZ_5 ![DTLZ_5](http://i.imgur.com/XZlNEIw.gif)
-- DTLZ_7 ![DTLZ_7](http://i.imgur.com/MbjngQ6.gif)  
+	+ DTLZ_1 ![DTLZ_1 Optimization using GA](http://i.imgur.com/BISkpyY.gifv) 
+	+ DTLZ_3 ![DTLZ_3](http://i.imgur.com/KjtuaQd.gif) 
+	+ DTLZ_5 ![DTLZ_5](http://i.imgur.com/XZlNEIw.gif)
+	+ DTLZ_7 ![DTLZ_7](http://i.imgur.com/MbjngQ6.gif)  
 
 |Model Name   |  Decisions  | Objectives  | Final Divergence | Final Best Energy | Hypervolume |
 |-------------|-------------|-------------|------------------|-------------------|-------------|
