@@ -69,6 +69,11 @@ Settings:
 	+ DTLZ_5 ![DTLZ_5](http://i.imgur.com/XZlNEIw.gif)
 	+ DTLZ_7 ![DTLZ_7](http://i.imgur.com/MbjngQ6.gif)  
 
+### Results:
+
 |Model Name   |  Decisions  | Objectives  | Final Divergence | Final Best Energy | Hypervolume |
 |-------------|-------------|-------------|------------------|-------------------|-------------|
 | DTLZ_1      | 10          | 2           |                  | ||
+
+### Future Work:
+The the parameters of GA to see which configuaration works best.
