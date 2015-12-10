@@ -62,7 +62,7 @@ Settings:
 		- A good metric is convergence to True pareto frontier. It is average distance of your frontier from the True PF. The problem is again, we do not have True PF for all the problems.
 		- So in order to solve this problem, we came up with the `divergence score`. Diverence score is how far we came from the baseline: It is average distance of your frontier from the baseline population. This can be used as we have both baseline and final frontier available with us. Also, it does not require any True PF.
 
-- Some visual aids that helped in deciding if we are going in correct direction.:
+- Some visual aids that helped in deciding if we are going in correct direction. Here is the link on how to produce these animation [link](animations.md):
 
 	+ DTLZ_1 ![DTLZ_1 Optimization using GA](http://i.imgur.com/BISkpyY.gifv) 
 	+ DTLZ_3 ![DTLZ_3](http://i.imgur.com/KjtuaQd.gif) 
@@ -70,7 +70,7 @@ Settings:
 	+ DTLZ_7 ![DTLZ_7](http://i.imgur.com/MbjngQ6.gif)  
 
 ### Results:
-All the raw outputs can be found inside the folder out/ . Here is the summary results
+All the raw outputs can be found inside the folder `out/` . Here is the summary results
 
 |Model Name   |  Decisions  | Objectives  | Final Divergence | Final Best Energy | Hypervolume |
 |-------------|-------------|-------------|------------------|-------------------|-------------|
