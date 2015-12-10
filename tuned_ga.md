@@ -3,10 +3,10 @@
 - Anand Bora
 - Ravi Singh
 
-#### Summary
+#### Abstract
 - As a part of this experiment, we used Differential Evolution (DE) to tune default "magic" parameters for Genetic Algorithms (GA).
 
-#### Design Considerations:
+#### Overview and Design Considerations:
 - We used DE algorithm with following default settings: 
 ```
   Settings: 
@@ -29,6 +29,34 @@
   - Single objective function of GA model, initializes an instance of GA algorithm with the decisions and passes the actual model we intend to optimize to GA algorithm. GA algorithm returns returns the final population. The objective function returns the "divergence distance" of the final population with the baseline population.  
 - Note that all instances of GA algorithm are optimized with the same baseline population.
 - At the end of the runs of DE, we get a frontier of tuned GAs. To compare it with untuned GA, we choose an untuned GA with magic parameters as the mean of individual decisions. Example: "gens" have low and high of 200 and 600 respectively, and untuned GA had "gens" set to 400.  
+
+### GA Algorithm implementation
+Here is what we did:
+
+- Generate a random population in the start.
+- Sort the entire population based on their domination scores in increasing order. A domination score of candidate 'a' is number of other candidates that dominate 'a'.
+- Choose first x% and last y% from the sorted population to be parents for next generation. 
+- Produce `total_population_size - len(parents)` new children by select , crossover and mutate among parents. 
+- parents + new children contitute next generation.
+
+- Here is the basic code for the implementation (Just for explanation purpose):
+```python
+def GA(model):
+	population = [model.generate() for _ in pop_size]
+	
+	for _ in range(number_of_gen):
+		population.sort(key = lambda can: can.domination_score)
+		parents = population[:x] + population[-y:]        # Keep top x% and bottom y%
+		next_gen = parents[:]
+
+		while len(next_gen)  < len(population):
+			papa, mama = select(parents)
+			son = crossover(papa, mama)
+			son = mutate(son)
+			next_gen.append(son)
+
+		population = next_gen[:]
+```
 
 ### Challenges:
 - Slow performance of GA
