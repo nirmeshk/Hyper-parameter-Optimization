@@ -26,7 +26,7 @@
         Decision(name="retain", low=0.1, high=0.5)
         Decision(name="mutate_prob", low=0.25, high=0.75)
 ```
-  - Single objective function of GA model, initializes an instance of GA algorithm with the decisions and passes the actual model we intend to optimize to GA algorithm. GA algorithm returns returns the final population. The objective function returns the "divergence distance" of the final population with the baseline population.  
+- Single objective function of GA model, initializes an instance of GA algorithm with the decisions and passes the actual model we intend to optimize to GA algorithm. GA algorithm returns returns the final population. The objective function returns the "divergence distance" of the final population with the baseline population.  
 - Note that all instances of GA algorithm are optimized with the same baseline population.
 - At the end of the runs of DE, we get a frontier of tuned GAs. To compare it with untuned GA, we choose an untuned GA with magic parameters as the mean of individual decisions. Example: "gens" have low and high of 200 and 600 respectively, and untuned GA had "gens" set to 400.  
 
