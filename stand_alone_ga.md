@@ -98,7 +98,8 @@ All the raw outputs can be found inside the folder `out/` . Here is the summary 
 | DTLZ_1      | 10          | 8           | 58.359461992     | 4.3967092926e+23  |
 
 
-
+### Conclusions
+- As we can see from both visual animations and divergence scores, The algorithm performs excellent for DTLZ_1, DTLZ_3. It performs very poorly on DTLZ_5. The results for DTLZ_7 are acceptable.
 
 ### Future Work:
 The the parameters of GA to see which configuaration works best.
