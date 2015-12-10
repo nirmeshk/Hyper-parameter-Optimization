@@ -87,17 +87,15 @@ All the raw outputs can be found inside the folder `out/` . Here is the summary 
 | DTLZ_3      | 10          | 3           | 191.609929704    | ||
 | DTLZ_3      | 10          | 4           | 158.073500707    | ||
 | DTLZ_3      | 40          | 4           | 408.348147997    | ||
-
-
-
-
-
-
-
-
-
-
-
+| DTLZ_5      | 10          | 2           | 0.00334231350105 | ||
+| DTLZ_5      | 30          | 2           | 0.00168772790637 | ||
+| DTLZ_5      | 40          | 2           | 0.00298688944974 | ||
+| DTLZ_5      | 10          | 3           | 0.0144046707116  | ||
+| DTLZ_7      | 10          | 2           | 1.31402313099    | ||
+| DTLZ_7      | 30          | 2           | 2.01828183581    | ||
+| DTLZ_7      | 40          | 2           | 2.36317104143    | ||
+| DTLZ_7      | 10          | 3           | 1.75300752713    | ||
+| DTLZ_7      | 40          | 4           | 3.19608899722    | ||
 
 ### Future Work:
 The the parameters of GA to see which configuaration works best.
