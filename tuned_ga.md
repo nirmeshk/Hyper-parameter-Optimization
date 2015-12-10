@@ -98,8 +98,12 @@ We ran it for DTLZ1 (2 objectives and 5 decisions) and for GA algorithm for 80 a
 | 7  | tuned | 27.32 | { gens = 441, era = 98, retain = 0.49, mutate_prob = 0.62 } |
 | 8  | tuned | 24.10 | { gens = 503, era = 114, retain = 0.23, mutate_prob = 0.39 } |
 | 9  | tuned | 22.73 | { gens = 578, era = 58, retain = 0.40, mutate_prob = 0.33 } |
-| 10  | tuned | 22.60 | { gens = 389, era = 184, retain = 0.39, mutate_prob = 0.48 } |
+| 10 | tuned | 22.60 | { gens = 389, era = 184, retain = 0.39, mutate_prob = 0.48 } |
 | 11 | tuned | 18.80 | { gens = 429, era = 107, retain = 0.29, mutate_prob = 0.33 } |
+
+### Threats to validity:
+- Do we really need an optimizer, optimizing another optimizer? Who will optimize the optimizer, optimizing the optimizer! :) Food for thought.
+- This process is time consuming, we might consider to utilize that same time to run our GA on a larger set of candidates, this might give a better result in lesser amount of time.
 
 ### Future Work:
 - Optimize the algorithm to make it faster. 
