@@ -101,5 +101,8 @@ All the raw outputs can be found inside the folder `out/` . Here is the summary 
 ### Conclusions
 - As we can see from both visual animations and divergence scores, The algorithm performs excellent for DTLZ_1, DTLZ_3. It performs very poorly on DTLZ_5. The results for DTLZ_7 are acceptable.
 
+### Threats to validity:
+- Our version of Genetic Algorithm (GA) uses continuous domination to compare each candidate with every other candidate in the population to rank the candidates. This is n^2 operation in the size population. This process becomes time consuming and we could not increase the population size above 500. 
+
 ### Future Work:
 The the parameters of GA to see which configuaration works best.
