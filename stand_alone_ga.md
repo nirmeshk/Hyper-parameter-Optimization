@@ -103,6 +103,7 @@ All the raw outputs can be found inside the folder `out/` . Here is the summary 
 
 ### Threats to validity:
 - Our version of Genetic Algorithm (GA) uses continuous domination to compare each candidate with every other candidate in the population to rank the candidates. This is n^2 operation in the size population. This process becomes time consuming and we could not increase the population size above 500. 
+- Diverence score, although logically seems to be a good metric to guide the optimization, it is something that we came up with, and are not sure about its validity.
 
 ### Future Work:
 The the parameters of GA to see which configuaration works best.
