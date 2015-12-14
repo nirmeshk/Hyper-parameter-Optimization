@@ -102,6 +102,7 @@ We ran it for DTLZ1 (2 objectives and 5 decisions) and for GA algorithm for 80 a
 | 11 | tuned | 18.80 | { gens = 429, era = 107, retain = 0.29, mutate_prob = 0.33 } |
 
 ### Threats to validity:
+- Diverence score, although logically seems to be a good metric to guide the optimization of DE, it is something that we came up with, and are not sure about its validity.
 - Do we really need an optimizer, optimizing another optimizer? Who will optimize the optimizer, optimizing the optimizer! :) Food for thought.
 - This process is time consuming, we might consider to utilize that same time to run our GA on a larger set of candidates, this might give a better result in lesser amount of time.
 
